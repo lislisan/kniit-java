@@ -9,6 +9,6 @@ public class Main {
         SolutionSecond.PrintNumbers();
 
         System.out.println("\n___Вариант 3___");
-
+        SolutionThird.PrintNumbers();
     }
 }
