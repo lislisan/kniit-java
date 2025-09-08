@@ -5,6 +5,10 @@ import org.kniit.lab1.task2.Calculator_summ;
 public class Calculator {
     public static void PrepareString(String strr) {
         String[] parts = strr.split(" ");
+        if(parts.length != 3) {
+          System.out.println("Ошибка => Неправильный формат ввода!");
+          return;
+        }
         String a = parts[0];
         String b = parts[2];
         String sign = parts[1];
