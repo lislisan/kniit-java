@@ -1,7 +1,5 @@
 package org.kniit.lab2.task3;
 
-import org.kniit.lab1.task2.Calculator_summ;
-
 public class Calculator {
     public static void PrepareString(String strr) {
         String[] parts = strr.split(" ");
