@@ -1,5 +1,6 @@
 package org.kniit.lab2.task4;
 
+// данные размера изменяются вручную
 import java.awt.*;
 
 public class Main {
