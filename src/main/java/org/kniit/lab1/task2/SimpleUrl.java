@@ -8,23 +8,80 @@ public class SimpleUrl {
     private String webpageName;
     private String webPageExtention;
 
-    public void setProtocol(String protocol1) {
-        protocol = protocol1;
+    private String intParam;
+    private String doubleParam;
+    private String textParameter;
+
+    public String getProtocol() {
+        return protocol;
     }
-    public void setAddress(String address1) {
-        address = address1;
+
+    public String getAddress() {
+        return address;
     }
-    public void setDomainZone(String domainZone1) {
-        domainZone = domainZone1;
+
+    public String getDomainZone() {
+        return domainZone;
     }
-    public void setSiteName(String siteName1) {
-        siteName = siteName1;
+
+    public String getSiteName() {
+        return siteName;
     }
-    public void setWebpageName(String webpageName1) {
-        webpageName = webpageName1;
+
+    public String getWebpageName() {
+        return webpageName;
     }
-    public void setWebPageExtention(String webPageExtention1) {
-        webPageExtention = webPageExtention1;
+
+    public String getWebPageExtention() {
+        return webPageExtention;
+    }
+
+    public String getIntParam() {
+        return intParam;
+    }
+
+    public String getDoubleParam() {
+        return doubleParam;
+    }
+
+    public String getTextParameter() {
+        return textParameter;
+    }
+
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setDomainZone(String domainZone) {
+        this.domainZone = domainZone;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
+    }
+
+    public void setWebpageName(String webpageName) {
+        this.webpageName = webpageName;
+    }
+
+    public void setWebPageExtention(String webPageExtention) {
+        this.webPageExtention = webPageExtention;
+    }
+
+    public void setIntParam(String intParam) {
+        this.intParam = intParam;
+    }
+
+    public void setDoubleParam(String doubleParam) {
+        this.doubleParam = doubleParam;
+    }
+
+    public void setTextParameter(String textParameter) {
+        this.textParameter = textParameter;
     }
 
     @Override
@@ -34,6 +91,9 @@ public class SimpleUrl {
                 "domainZone = " + domainZone + "\n" +
                 "siteName = " + siteName + "\n" +
                 "webpageName = " + webpageName + "\n" +
-                "webPageExtention = " + webPageExtention + "\n";
+                "webPageExtention = " + webPageExtention + "\n" +
+                "intParam = " + intParam + "\n" +
+                "doubleParam = " + doubleParam + "\n" +
+                "textParameter = " + textParameter;
     }
 }
