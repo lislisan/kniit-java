@@ -2,130 +2,95 @@ package org.kniit.lab3;
 
 public class Player {
     private String name;
-    private int currentHealth;
-    private int maxHealth;
-    private boolean isAlive;
-    private int positionX;
-    private int positionY;
+    private int now_health;
+    private int max_health;
+    private boolean alive;
+    private int x_position;
+    private int y_position;
+    private int damage;
     private int defense;
 
-    private Race race;
-    private ClassBehavior characterClass;
-
-    public Player(String name, Race race, ClassBehavior characterClass) {
+    public Player(String name, int max_health, int damage, int defense){
         this.name = name;
-        this.race = race;
-        this.characterClass = characterClass;
-        this.isAlive = true;
-        this.positionX = 0;
-        this.positionY = 0;
-
-        calculateStats();
+        this.now_health = now_health;
+        this.max_health = max_health;
+        this.alive = true;
+        this.x_position = 0;
+        this.y_position = 0;
+        this.damage = damage;
+        this.defense = defense;
     }
 
-    private void calculateStats() {
-        this.defense = 5;
-
-        if (characterClass instanceof WarriorBehavior) {
-            this.maxHealth = 120 + race.getDefenseBonus() * 5;
-        } else if (characterClass instanceof MageBehavior) {
-            this.maxHealth = 80 + race.getSpellBonus() * 3;
-        } else if (characterClass instanceof PriestBehavior) {
-            this.maxHealth = 100 + race.getHealingBonus() * 4;
-        }
-
-        this.currentHealth = maxHealth;
+    public String getName(){
+        return name;
     }
 
-    public void increaseHealth(int value) {
-        if (!isAlive) {
-            System.out.println(name + "💀💀💀 мертв и не может быть вылечен!");
-            return;
-        }
-
-        int actualHeal = value + race.getHealingBonus();
-        currentHealth += actualHeal;
-
-        if (currentHealth > maxHealth) {
-            currentHealth = maxHealth;
-        }
-
-        System.out.println(name + " получил " + actualHeal + " лечения. Здоровье: " + currentHealth + "/" + maxHealth);
+    public int getNow_Health(){
+        return now_health;
     }
 
-    public void decreaseHealth(int value) {
-        if (!isAlive) {
-            System.out.println(name + " уже мертв! 💀💀💀");
-            return;
+    public boolean getAlive(){
+        return alive;
+    }
+
+    public int getX_position(){
+        return x_position;
+    }
+
+    public int getY_position(){
+        return y_position;
+    }
+
+    public int getDefense(){
+        return defense;
+    }
+
+    public int getDamage(){
+        return damage;
+    }
+
+    public void plus_health(int value){
+        if (alive){
+            now_health = Math.min(value + now_health, max_health);
+            System.out.println(name + " получил лечение 💊. Здоровье: " + now_health);
         }
-
-        int totalDefense = defense + race.getDefenseBonus();
-
-        if (characterClass instanceof WarriorGuardBehavior) {
-            WarriorGuardBehavior guard = (WarriorGuardBehavior) characterClass;
-            totalDefense += guard.getAdditionalDefense();
-        }
-
-        int actualDamage = Math.max(0, value - totalDefense);
-        currentHealth -= actualDamage;
-
-        System.out.println(name + " получил " + actualDamage + " урона (защита: " + totalDefense + "). Здоровье: " + currentHealth + "/" + maxHealth);
-
-        if (currentHealth <= 0) {
-            currentHealth = 0;
-            isAlive = false;
-            System.out.println("💀💀💀" + name + " погиб!");
+        else {
+            System.out.println(name + " мёртв ☠️");
         }
     }
 
-    public void move(int x, int y) {
-        if (!isAlive) {
-            System.out.println(name + " мертв и не может двигаться!");
-            return;
-        }
-
-        this.positionX = x;
-        this.positionY = y;
-        System.out.println("step...step.... " + name + " переместился в позицию (" + x + ", " + y + ")");
-    }
-
-    public void performClassAction(Player target) {
-        if (!isAlive) {
-            System.out.println(name + " мертв и не может действовать!");
-            return;
-        }
-
-        if (characterClass instanceof WarriorBehavior) {
-            WarriorBehavior warrior = (WarriorBehavior) characterClass;
-            if (!isInRange(target, warrior.getAttackRange())) {
-                System.out.println("!!! " + name + " не может атаковать - цель слишком далеко!");
-                return;
+    public void minus_health(int value){
+        if (alive){
+            now_health = now_health - value;
+            if (now_health > 0){
+                System.out.println(name + " получил урон 🔪. Здоровье: " + now_health);
+            }
+            if (now_health <= 0){
+                now_health = 0;
+                System.out.println(name + " погиб. Светлая память ему 🕊️");
+                alive = false;
             }
         }
-
-        System.out.println("⚡ " + name + " (" + getCharacterClassName() + ") использует способность на " + target.getName());
-        characterClass.performAction(target);
+        else{
+            System.out.println(name + " мёртв. Лежачих не бьют 😢");
+        }
     }
 
-    private boolean isInRange(Player target, int range) {
-        int distance = Math.abs(positionX - target.positionX) + Math.abs(positionY - target.positionY);
-        return distance <= range;
+    public void move(int pos_X, int pos_Y){
+        if (alive){
+            this.x_position = pos_X;
+            this.y_position = pos_Y;
+            System.out.println(name + " переместился. Текцущая позиция: " + x_position + "; " + y_position);
+        }
+        else{
+            System.out.println("Мертвецы не ходят 🧟‍♂️");
+        }
     }
 
-    public String getName() { return name; }
-    public int getCurrentHealth() { return currentHealth; }
-    public int getMaxHealth() { return maxHealth; }
-    public boolean isAlive() { return isAlive; }
-    public int getPositionX() { return positionX; }
-    public int getPositionY() { return positionY; }
-    public String getRaceName() { return race.getName(); }
-    public String getCharacterClassName() { return characterClass.getClassName(); }
 
     @Override
-    public String toString() {
-        return String.format("👤 %s | %s %s | ❤️ %d/%d | 🛡️ %d | 📍 (%d,%d) | %s",
-                name, getRaceName(), getCharacterClassName(),
-                currentHealth, maxHealth, defense, positionX, positionY,
-                isAlive ? "✅ жив" : "💀 мертв");
+    public String toString(){
+        return String.format("Имя: %s | Класс: %s | Здоровье: %d/%d | Статус: %s | Позиция: (%d, %d) | Урон: %d | Защита: %d",
+                name, this.getClass().getSimpleName(), now_health, max_health, alive ? "Жив" : "Мёртв", x_position, y_position, damage, defense);
     }
 }

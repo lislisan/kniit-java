@@ -1,5 +1,5 @@
 package org.kniit.lab3;
 
 public interface Healer {
-    void heal(Player target);
+    void heal(Player player);
 }

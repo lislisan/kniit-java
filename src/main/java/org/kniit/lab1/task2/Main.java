@@ -26,7 +26,7 @@ public class Main {
 
             String[] pathParts = path.split("/");
             String fileName = pathParts[pathParts.length - 1]; // page.jsp
-            simpleUrl.setWebpageName(fileName);
+            simpleUrl.setWebpageName(fileName); // проверка на точу
 
             String[] nameParts = fileName.split("\\.");
             simpleUrl.setWebPageExtention(nameParts[1]); // jsp
