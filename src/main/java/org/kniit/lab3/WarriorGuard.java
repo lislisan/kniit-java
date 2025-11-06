@@ -11,11 +11,16 @@ public class WarriorGuard extends Warrior {
     @Override
     public void minus_health(int value) {
         if (this.getAlive()){
-            int now_damage = Math.max(value - (this.getDefense() + additionalDefence), 0);
-            int new_health = this.getNow_Health() - now_damage;
-            System.out.println(this.getName() + " полученный урон уменьшен. Щит! 🛡️");
+            int actualDamage = Math.max(value - (this.getDefense() + additionalDefence), 1);
+            System.out.println(this.getName() + " блокирует часть урона щитом! 🛡️ (Защита: " +
+                    this.getDefense() + " + " + additionalDefence + " бонус)");
             super.minus_health(value - additionalDefence);
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + " [Гвардия]";
     }
 
 }
