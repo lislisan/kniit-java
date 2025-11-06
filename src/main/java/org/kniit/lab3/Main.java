@@ -22,8 +22,5 @@ public class Main {
         System.out.println(strong_man);
         System.out.println(human_mag);
         System.out.println(healer);
-
-        System.out.println();
-        System.out.println(" ___ Описание классов: ");
     }
 }
