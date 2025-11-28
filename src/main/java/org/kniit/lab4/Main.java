@@ -26,7 +26,7 @@ public class Main {
                     russianAlphabet
             );
 
-            System.out.println("=== СТАТИСТИКА СЛОВАРЯ ===");
+            System.out.println("Статистика словаря: ");
             System.out.println("Общее количество слов: " + stats.getDictionarySize());
             System.out.println("Количество палиндромов: " + stats.getPolindromCount());
             System.out.println("Минимальная длина слова: " + stats.getMinWordLength());
@@ -48,7 +48,6 @@ public class Main {
 
     private static void playWordGame(DictionaryStatistic stats) {
         Scanner inputScanner = new Scanner(System.in);
-
         System.out.println("\n ИГРА В СЛОВА ");
         System.out.println("Введите слово:");
         String inputWord = inputScanner.nextLine().trim();
@@ -68,13 +67,11 @@ public class Main {
             Map<Integer, List<String>> wordsByLength = new TreeMap<>(Collections.reverseOrder());
             for (String word : possibleWords) {
                 int length = word.length();
-                wordsByLength.computeIfAbsent(length, k -> new ArrayList<>()).add(word);
+                wordsByLength.computeIfAbsent(length, k -> new ArrayList<>()).add(word); //computeIfAbsent позволяет вычислять значение для заданного ключа, но только в том случае, если этого ключа еще нет в карте
             }
-
             for (Map.Entry<Integer, List<String>> entry : wordsByLength.entrySet()) {
                 System.out.println(entry.getKey() + " букв: " + String.join(", ", entry.getValue()));
             }
-
             System.out.println("\nВсего найдено слов: " + possibleWords.size());
         }
 
