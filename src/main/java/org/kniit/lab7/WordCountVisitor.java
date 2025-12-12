@@ -20,7 +20,7 @@ public class WordCountVisitor extends SimpleFileVisitor<Path> {
             totalWordCount += wordCount;
         }
 
-        return FileVisitResult.CONTINUE;
+        return FileVisitResult.CONTINUE; //продолжить обход
     }
 
     @Override
