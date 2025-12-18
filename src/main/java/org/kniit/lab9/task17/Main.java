@@ -2,7 +2,7 @@ package org.kniit.lab9.task17;
 
 public class Main {
     public static void main(String[] args) throws IllegalAccessException {
-        User user = new User(null, "Elisabeth", 19);
+        User user = new User(null, "Elisabet1111h", 16);
         Validator.validate(user);
     }
 }
