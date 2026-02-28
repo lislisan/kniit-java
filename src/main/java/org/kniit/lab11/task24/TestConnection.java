@@ -16,7 +16,7 @@ public class TestConnection {
             Connection conn = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/postgres",
                     "postgres",
-                    "***************"
+                    "lolGODdamn2188"
             );
             System.out.println("✅ Подключение успешно!");
 
